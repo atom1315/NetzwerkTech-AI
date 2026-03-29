@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f1320"/><stop offset="100%" style="stop-color:#181e33"/>
+    </linearGradient>
+    <filter id="s"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/></filter>
+    <filter id="g"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="700" height="300" fill="url(#bg)" rx="10"/>
+  <text x="350" y="28" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="700" fill="#e2e8f0">Anomalie-Erkennung: Autoencoder + LSTM Pipeline</text>
+
+  <!-- Input -->
+  <g filter="url(#s)">
+    <rect x="15" y="55" width="100" height="190" rx="6" fill="#162040" stroke="#00d4ff" stroke-width="1"/>
+    <text x="65" y="80" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#00d4ff">Input</text>
+    <text x="65" y="105" text-anchor="middle" font-family="monospace" font-size="8" fill="#8892b0">Packets</text>
+    <text x="65" y="120" text-anchor="middle" font-family="monospace" font-size="8" fill="#8892b0">Flows</text>
+    <text x="65" y="135" text-anchor="middle" font-family="monospace" font-size="8" fill="#8892b0">Logs</text>
+    <!-- Small signal wave -->
+    <polyline points="30,165 40,155 50,170 60,150 70,168 80,155 90,162 100,158" fill="none" stroke="#00d4ff" stroke-width="1.2" opacity="0.6"/>
+    <text x="65" y="200" text-anchor="middle" font-family="monospace" font-size="8" fill="#5a6080">128-dim</text>
+    <text x="65" y="215" text-anchor="middle" font-family="monospace" font-size="8" fill="#5a6080">features</text>
+  </g>
+
+  <!-- Encoder -->
+  <g filter="url(#s)">
+    <rect x="140" y="70" width="110" height="160" rx="6" fill="#1e1a3a" stroke="#7b2ff7" stroke-width="1"/>
+    <text x="195" y="95" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#a78bfa">Encoder</text>
+    <rect x="155" y="108" width="80" height="18" rx="3" fill="#2a1f5e"/><text x="195" y="121" text-anchor="middle" font-family="monospace" font-size="8" fill="#c4b5fd">Dense(128)</text>
+    <rect x="155" y="132" width="80" height="18" rx="3" fill="#2a1f5e"/><text x="195" y="145" text-anchor="middle" font-family="monospace" font-size="8" fill="#c4b5fd">LSTM(64)</text>
+    <rect x="155" y="156" width="80" height="18" rx="3" fill="#2a1f5e"/><text x="195" y="169" text-anchor="middle" font-family="monospace" font-size="8" fill="#c4b5fd">LSTM(32)</text>
+    <rect x="155" y="180" width="80" height="18" rx="3" fill="#2a1f5e"/><text x="195" y="193" text-anchor="middle" font-family="monospace" font-size="8" fill="#c4b5fd">Dense(32)</text>
+    <text x="195" y="218" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#5a6080">Kompression →</text>
+  </g>
+
+  <!-- Latent Space -->
+  <g filter="url(#s)">
+    <rect x="275" y="110" width="90" height="80" rx="20" fill="#0a2a1a" stroke="#00ff88" stroke-width="1.5"/>
+    <text x="320" y="145" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#00ff88">Latent</text>
+    <text x="320" y="162" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="700" fill="#00ff88">Space</text>
+    <text x="320" y="180" text-anchor="middle" font-family="monospace" font-size="8" fill="#4ade80">z ∈ ℝ³²</text>
+  </g>
+
+  <!-- Decoder -->
+  <g filter="url(#s)">
+    <rect x="390" y="70" width="110" height="160" rx="6" fill="#1e1a3a" stroke="#7b2ff7" stroke-width="1"/>
+    <text x="445" y="95" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#a78bfa">Decoder</text>
+    <rect x="405" y="108" width="80" height="18" rx="3" fill="#2a1f5e"/><text x="445" y="121" text-anchor="middle" font-family="monospace" font-size="8" fill="#c4b5fd">Dense(32)</text>
+    <rect x="405" y="132" width="80" height="18" rx="3" fill="#2a1f5e"/><text x="445" y="145" text-anchor="middle" font-family="monospace" font-size="8" fill="#c4b5fd">LSTM(64)</text>
+    <rect x="405" y="156" width="80" height="18" rx="3" fill="#2a1f5e"/><text x="445" y="169" text-anchor="middle" font-family="monospace" font-size="8" fill="#c4b5fd">LSTM(64)</text>
+    <rect x="405" y="180" width="80" height="18" rx="3" fill="#2a1f5e"/><text x="445" y="193" text-anchor="middle" font-family="monospace" font-size="8" fill="#c4b5fd">Dense(128)</text>
+    <text x="445" y="218" text-anchor="middle" font-family="sans-serif" font-size="8" fill="#5a6080">← Rekonstruktion</text>
+  </g>
+
+  <!-- Decision -->
+  <g filter="url(#s)">
+    <rect x="530" y="55" width="150" height="190" rx="6" fill="#2a1a1a" stroke="#ff6b6b" stroke-width="1"/>
+    <text x="605" y="80" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" fill="#ff6b6b">Entscheidung</text>
+    <text x="605" y="105" text-anchor="middle" font-family="monospace" font-size="9" fill="#8892b0">Reconstruction</text>
+    <text x="605" y="118" text-anchor="middle" font-family="monospace" font-size="9" fill="#8892b0">Error ε</text>
+    <line x1="550" y1="130" x2="660" y2="130" stroke="#3b4563" stroke-width="0.5"/>
+    <text x="605" y="150" text-anchor="middle" font-family="monospace" font-size="9" fill="#4ade80">ε &lt; θ → ✅ Normal</text>
+    <text x="605" y="175" text-anchor="middle" font-family="monospace" font-size="9" fill="#ff6b6b">ε ≥ θ → ⚠️ Anomalie</text>
+    <line x1="550" y1="190" x2="660" y2="190" stroke="#3b4563" stroke-width="0.5"/>
+    <text x="605" y="210" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">θ = adaptive</text>
+    <text x="605" y="225" text-anchor="middle" font-family="monospace" font-size="8" fill="#fbbf24">threshold</text>
+  </g>
+
+  <!-- Arrows -->
+  <g filter="url(#g)">
+    <line x1="115" y1="150" x2="140" y2="150" stroke="#00d4ff" stroke-width="1.5"/>
+    <polygon points="138,146 146,150 138,154" fill="#00d4ff"/>
+    <line x1="250" y1="150" x2="275" y2="150" stroke="#7b2ff7" stroke-width="1.5"/>
+    <polygon points="273,146 281,150 273,154" fill="#7b2ff7"/>
+    <line x1="365" y1="150" x2="390" y2="150" stroke="#00ff88" stroke-width="1.5"/>
+    <polygon points="388,146 396,150 388,154" fill="#00ff88"/>
+    <line x1="500" y1="150" x2="530" y2="150" stroke="#ff6b6b" stroke-width="1.5"/>
+    <polygon points="528,146 536,150 528,154" fill="#ff6b6b"/>
+  </g>
+
+  <!-- Bottom info -->
+  <text x="350" y="275" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#5a6080">Training: Normal Traffic Only (Semi-Supervised) │ Inference: ~2ms/sample auf NVIDIA A100</text>
+</svg>

@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "netzwerk-ai"
+version = "2.0.0"
+description = "KI-gestützte Netzwerk-Analyse & Optimierung"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [
+    { name = "NetzwerkTech Team" },
+]
+keywords = ["network", "ai", "anomaly-detection", "gnn", "deep-learning"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Networking :: Monitoring",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "scikit-learn>=1.3",
+    "fastapi>=0.109",
+    "uvicorn>=0.27",
+    "pydantic>=2.5",
+    "httpx>=0.26",
+    "rich>=13.0",
+]
+
+[project.optional-dependencies]
+gpu = [
+    "torch>=2.2",
+    "torch-geometric>=2.4",
+    "tensorboard>=2.15",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=4.1",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.2",
+    "mypy>=1.8",
+]
+all = ["netzwerk-ai[gpu,dev]"]
+
+[project.urls]
+Homepage = "https://github.com/atom1315/NetzwerkTech-AI"
+
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.mypy]
+python_version = "3.10"
+strict = true

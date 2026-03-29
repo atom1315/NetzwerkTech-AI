@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e27"/>
+      <stop offset="50%" style="stop-color:#1a1e4a"/>
+      <stop offset="100%" style="stop-color:#0d1137"/>
+    </linearGradient>
+    <linearGradient id="glow1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff"/>
+      <stop offset="100%" style="stop-color:#7b2ff7"/>
+    </linearGradient>
+    <linearGradient id="glow2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00ff88"/>
+      <stop offset="100%" style="stop-color:#00d4ff"/>
+    </linearGradient>
+    <filter id="neon">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="800" height="250" fill="url(#bg)"/>
+  <!-- Grid pattern -->
+  <g opacity="0.08" stroke="#00d4ff" stroke-width="0.5">
+    <line x1="0" y1="50" x2="800" y2="50"/><line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="150" x2="800" y2="150"/><line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="100" y1="0" x2="100" y2="250"/><line x1="200" y1="0" x2="200" y2="250"/>
+    <line x1="300" y1="0" x2="300" y2="250"/><line x1="400" y1="0" x2="400" y2="250"/>
+    <line x1="500" y1="0" x2="500" y2="250"/><line x1="600" y1="0" x2="600" y2="250"/>
+    <line x1="700" y1="0" x2="700" y2="250"/>
+  </g>
+  <!-- Neural network nodes -->
+  <g filter="url(#softglow)" opacity="0.5">
+    <circle cx="80" cy="60" r="4" fill="#00d4ff"/>
+    <circle cx="150" cy="120" r="3" fill="#7b2ff7"/>
+    <circle cx="90" cy="180" r="5" fill="#00ff88"/>
+    <circle cx="680" cy="70" r="4" fill="#7b2ff7"/>
+    <circle cx="720" cy="150" r="3" fill="#00d4ff"/>
+    <circle cx="650" cy="190" r="5" fill="#00ff88"/>
+    <line x1="80" y1="60" x2="150" y2="120" stroke="#00d4ff" stroke-width="0.8" opacity="0.4"/>
+    <line x1="150" y1="120" x2="90" y2="180" stroke="#7b2ff7" stroke-width="0.8" opacity="0.4"/>
+    <line x1="680" y1="70" x2="720" y2="150" stroke="#00d4ff" stroke-width="0.8" opacity="0.4"/>
+    <line x1="720" y1="150" x2="650" y2="190" stroke="#7b2ff7" stroke-width="0.8" opacity="0.4"/>
+  </g>
+  <!-- Orbiting particles -->
+  <g filter="url(#softglow)">
+    <circle cx="200" cy="40" r="2" fill="#00ff88" opacity="0.6"/>
+    <circle cx="600" cy="210" r="2" fill="#00d4ff" opacity="0.6"/>
+    <circle cx="750" cy="30" r="1.5" fill="#ff6b6b" opacity="0.5"/>
+    <circle cx="50" cy="220" r="1.5" fill="#ffd93d" opacity="0.5"/>
+  </g>
+  <!-- Title -->
+  <text x="400" y="100" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="48" font-weight="700" fill="url(#glow1)" filter="url(#neon)">NetzwerkTech AI</text>
+  <text x="400" y="140" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="16" fill="#8892b0" letter-spacing="6">INTELLIGENTE NETZWERK-ANALYSE</text>
+  <!-- Decorative line -->
+  <line x1="250" y1="160" x2="550" y2="160" stroke="url(#glow2)" stroke-width="1.5" filter="url(#neon)" opacity="0.7"/>
+  <!-- Version badge -->
+  <rect x="345" y="175" width="110" height="28" rx="14" fill="none" stroke="url(#glow1)" stroke-width="1" opacity="0.6"/>
+  <text x="400" y="194" text-anchor="middle" font-family="'Segoe UI', sans-serif" font-size="12" fill="#00d4ff">v2.0 • 2026</text>
+</svg>
